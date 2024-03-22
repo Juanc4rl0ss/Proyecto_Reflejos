@@ -1,7 +1,6 @@
 //Aquí elijes la ruta de la hoja de estilos,y con eso ya todo lo que se hace aquí, se maqueta de manera modular
 import { useState } from "react";
 import "../hojas-de-estilo/usuario.css";
-import SelectUsuario from "./usuariosDeportistas.jsx";
 
 const Usuario = (props) => {
   const {
@@ -43,10 +42,9 @@ const Usuario = (props) => {
     <div className="container">
       <div className="tabContainer">
         <h2>
-          <span className="nombre">
-            {" "}
-            {nombre} {apellido1} {apellido2}
-          </span>
+          <span className="nombre">{nombre}</span>{" "}
+          <span className="nombre"> {apellido1}</span>
+          <span className="nombre">{apellido2}</span>
         </h2>
         <div className="menu">
           <div
@@ -68,11 +66,9 @@ const Usuario = (props) => {
         <div className="datos">
           <h3>Datos Personales</h3>
           <h4>
-            Nombre:&nbsp; &nbsp;{" "}
-            <span className="estiloDatos">
-              {" "}
-              {nombre} {apellido1} {apellido2}
-            </span>
+            Nombre:&nbsp;&nbsp; <span className="estiloDatos">{nombre}</span>{" "}
+            <span className="estiloDatos">{apellido1}</span>{" "}
+            <span className="estiloDatos">{apellido2}</span>{" "}
           </h4>
           <h4>
             Club:&nbsp; &nbsp; <span className="estiloDatos">{club}</span>
