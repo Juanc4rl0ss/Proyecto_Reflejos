@@ -1,0 +1,63 @@
+/* Aquí se puede añadir una hoja de estilo para cada componente, le pongo el mismo nombre que los componentes,para mayor claridad */
+main{
+    margin-left: 10px;
+    background-color: white;
+ }
+ section{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     
+   
+ }
+
+ h3{
+     color:#3c95d4;
+     letter-spacing: 5px;
+     padding-left: 2vh;
+    
+ }
+ .seleccion{
+    align-self: flex-end;
+    padding-bottom: 8px;
+    
+ }
+ 
+ 
+ .content {
+     display: none;
+ }
+ 
+ .activeContent {
+     display: block;
+ }
+ 
+ .tabContainer {
+     display: flex;
+     justify-content:space-around;
+     height: 10vh;
+     background-color: #d9d9d9;
+     width: 100%;
+ }
+ .nombre{
+     color: white;
+ }
+ .tabs {
+     color: white;
+     margin: 10px;
+     padding: 5px;
+     width: auto;
+     height: 30px;
+     
+     
+     
+     
+     
+    
+     
+ }
+ 
+ .activeTabs {
+     border: 2px solid #3c95d4;
+ }

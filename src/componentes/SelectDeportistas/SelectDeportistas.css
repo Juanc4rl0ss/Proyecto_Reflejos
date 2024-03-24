@@ -1,0 +1,18 @@
+.inputUsuarios select{
+    width:20vw;
+    height: 4vh;
+    cursor: pointer;
+    appearance: none;
+    background-image: url('../src/assets/flechaSelect.svg');
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 20px;
+    font-size: 16px;
+    padding-left: 5px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}

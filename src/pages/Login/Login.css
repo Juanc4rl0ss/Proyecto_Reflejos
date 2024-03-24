@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Taviraj:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap');
+
+.page-login .containerLogin{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    background-color:  #3B3B67;
+    transition: background 0.2s ease;
+    color:#ffffff;
+     font-family: "Londrina Solid", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.page-login .login{
+    background-color:#2B2B4B;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 60%;
+    border: 2px solid #7D7DC7;
+    box-shadow: 0 0 36px 1px #7D7DC7;
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.page-login .titulo{
+    text-align: center;
+    margin: 20px 0 0px 0;
+    
+}
+
+.page-login .titulo h2{
+    font-size: 25px;
+    font-family: "Taviraj", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.page-login .inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-login input{
+    border: 0;
+    border-bottom: 2px solid black;
+    margin: 0px 10px 10px 10px;
+    width: 80%;
+    height: 70%;
+    color: #ffffff;
+    outline: none;
+    background-color: #9191911f;
+    border: none;
+    border-radius: 5px;
+    font-weight: 300;
+    letter-spacing: 0.8px;
+    font-size: 15px;
+    backdrop-filter: blur(15px); 
+}
+
+.page-login input:focus {
+    box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.2);
+    animation: wobble 0.3s ease-in;
+    -webkit-animation: wobble 0.3s ease-in;
+}
+
+.page-login .iconos{
+    width: 90%;
+    margin: 20px;
+}
+
+.page-login .iconos label{
+    align-self: flex-start;
+    margin-left: 10%;
+    margin-top: 40px;
+}
+
+.page-login .inputs button{
+    background-color: #7D7DC7;
+    color: #ffffff;
+    display: block;
+    padding: 13px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    width: 90%;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    transition: all 0.1s ease-in-out;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    font-family: "Taviraj", serif;
+    font-weight: 500;
+}
+
+.page-login .inputs button:hover{
+    background-color: #ffffff;
+    color: #2B2B4B;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+    transform: scale(1.08);
+    -webkit-transform: scale(1.08);
+    -moz-transform: scale(1.08);
+    -ms-transform: scale(1.08);
+    -o-transform: scale(1.08);
+}
+
+@media(max-width:1000px){
+    .page-login .login{
+        width: 40vw;
+     }
+}
+
+@media(max-width:600px){
+    .page-login .login{
+        width: 80vw;
+     }
+}
+
+.page-login .error{
+    color:red;
+}
