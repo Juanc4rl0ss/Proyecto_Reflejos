@@ -104,7 +104,7 @@ const cambioInput=(queLabel,idLabel,queEstado)=>{
       id="email"
         type="email"
         value={email}
-        onClick={()=>cambioInput(emailLabel,"#labelEmail",setEmailPlace)}
+        onFocus={()=>cambioInput(emailLabel,"#labelEmail",setEmailPlace)}
         onChange={(e) => changeInputs(e,setEmail,setErrorEmail)}
         onBlur={(e)=>reseatInput(e,emailLabel,"#labelEmail",setEmailPlace,"Correo electrónico")}
         placeholder={emailPlace}
@@ -120,7 +120,7 @@ const cambioInput=(queLabel,idLabel,queEstado)=>{
       id="contraseña"
         type="password"
         value={contraseña}
-        onClick={()=>cambioInput(passLabel,"#labelPass",setPassPlace)}
+        onFocus={()=>cambioInput(passLabel,"#labelPass",setPassPlace)}
 
         onBlur={(e)=>reseatInput(e,emailLabel,"#labelPass",setPassPlace,"Contraseña")}
 

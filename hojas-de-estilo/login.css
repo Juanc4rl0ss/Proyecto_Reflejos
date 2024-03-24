@@ -81,6 +81,23 @@ input:focus {
     margin: 20px;
     
 }
+img:hover {
+    animation: rotar 2s linear ;
+    -webkit-animation: rotar 2s linear ;
+}
+  
+  @keyframes rotar {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(350deg);
+      -webkit-transform: rotate(350deg);
+      -moz-transform: rotate(350deg);
+      -ms-transform: rotate(350deg);
+      -o-transform: rotate(350deg);
+}
+  }
 
 .iconos label{
     align-self: flex-start;
