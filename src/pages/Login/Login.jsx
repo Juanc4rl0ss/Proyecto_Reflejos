@@ -1,5 +1,5 @@
 import { app } from "../../main";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import "./Login.css";
@@ -16,6 +16,29 @@ const Login = () => {
   // Estados para los errores en campos Email y Contraseña
   const [errorEmail, setEmailError] = useState("");
   const [errorContraseña, setContraseñaError] = useState("");
+
+  //Estado para implementar un efecto visual interactivo con el icono del mouse
+  const [posicionCursor, setPosicion] = useState({x:0,y:0})
+
+  //cada vez que cambia la posición de 'posicionCursor' se va actualizando y mostrando las coordenadas del puntero
+  useEffect(() => {
+
+    const manejarMovimiento = (event) => {
+      const {clientX, clientY} = event
+      console.log('manejarMovimiento', {clientX,clientY})
+      setPosicion({x: clientX,y: clientY})
+    }
+
+   
+      window.addEventListener('pointermove', manejarMovimiento)
+    
+
+    return () => {
+      window.removeEventListener('pointermove', manejarMovimiento)
+    }
+    
+  })
+
 
   // Obtener el objeto Auth de Firebase
   const auth = getAuth(app);
@@ -94,6 +117,15 @@ const Login = () => {
 
   return (
     <main className="page-login">
+      {
+      /* Actualiza dinámicamente la posición del div para seguir al puntero del ratón. */
+      }
+      <div
+        className="cursor-puntero"
+        style={{
+          transform: `translate(${posicionCursor.x - 10}px, ${posicionCursor.y - 10}px)`
+        }}
+      />
       <div className="containerLogin">
         <div className="login">
           <div className="titulo">
