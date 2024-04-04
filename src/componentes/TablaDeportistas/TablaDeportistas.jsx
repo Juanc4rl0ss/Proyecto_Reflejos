@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom";
 import "./TablaDeportistas.css";
 import Loading from "../../componentes/Loading/Loading";
-import useFirebaseDeportistas from "../../hooks/useFirebaseDeportistas";
+import useFirebaseGetDeportistas from "../../hooks/useFirebaseGetDeportistas";
+import Mensaje from "../Deportista/Mensaje/Mensaje";
 
 const TablaDeportistas = ({filtros}) => {
-  const { list, loading } = useFirebaseDeportistas(filtros);
+  const { list, loading, error} = useFirebaseGetDeportistas(filtros);
+
+  if (error){
+    return (<Mensaje tipo="danger">Ha ocurrido un error al consultar Firebase</Mensaje>);
+  }
 
   return (
     <>
       {loading && (<Loading/>)}
-      {!loading && (
+      {!loading && list.length > 0 && (
         <table className="table">
           <thead>
             <tr>
@@ -33,6 +38,7 @@ const TablaDeportistas = ({filtros}) => {
           </tbody>
         </table>
       )}
+      {!loading && list.length == 0 && (<Mensaje tipo="primary">No se han encontrado resultados con esos criterios de busqueda</Mensaje>)}
     </>
   );
 };

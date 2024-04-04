@@ -39,12 +39,10 @@ const Deportista = (props) => {
   };
 
   return (
-    <div className="container-deportista">
+    <div>
       <div className="tabContainer">
         <h2>
-          <span className="nombre">{nombre}</span>{" "}
-          <span className="nombre"> {apellido1}</span>
-          <span className="nombre">{apellido2}</span>
+          <span className="nombre">{`${nombre} ${apellido1} ${apellido2}`}</span>
         </h2>
         <div className="menu">
           <div

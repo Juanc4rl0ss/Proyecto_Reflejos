@@ -1,33 +1,10 @@
 import { useState } from "react";
 import { where } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import Header from "../../componentes/Header/Header";
 import TablaDeportistas from "../../componentes/TablaDeportistas/TablaDeportistas";
-import { app } from "../../main";
 import "./Home.css";
 
 const Home = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-
-    //Obtenemos la instancia de autentificación del usuario
-    const auth = getAuth(app);
-
-    //Ésta función se pone en modo observación y controla los cambios de sesión (se almacena en una cookie)
-    const suscripcionUsuario = onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        // En caso de que no haya un usuario logueado, redirecciona a /login
-        navigate("/login");
-      }
-    });
-
-    // Limpia el observador cuando el componente se desmonte
-    return suscripcionUsuario;
-  }, [navigate]);
-
   const [filtroNombre, setFiltroNombre] = useState("");
   const [filtroApellido1, setFiltroApellido1] = useState("");
   const [filtroApellido2, setFiltroApellido2] = useState("");
