@@ -25,7 +25,6 @@ const Login = () => {
 
     const manejarMovimiento = (event) => {
       const {clientX, clientY} = event
-      console.log('manejarMovimiento', {clientX,clientY})
       setPosicion({x: clientX,y: clientY})
     }
 

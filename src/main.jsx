@@ -7,12 +7,12 @@ import './main.css'
 
 // Configuracion de Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyCAJpPSiOo9OesYjreyWcn0tuGkVWJ_PFs",
-  authDomain: "reflejos-66014.firebaseapp.com",
-  projectId: "reflejos-66014",
-  storageBucket: "reflejos-66014.appspot.com",
-  messagingSenderId: "317448421660",
-  appId: "1:317448421660:web:6b72629a8cddebd0bc3ad9"
+  apiKey: "AIzaSyBoZS6sT1qOTTTyT92o-TdQfLAd2jrfNPc",
+  authDomain: "reflejos-b216f.firebaseapp.com",
+  projectId: "reflejos-b216f",
+  storageBucket: "reflejos-b216f.appspot.com",
+  messagingSenderId: "683735341103",
+  appId: "1:683735341103:web:6d5211e1ac75e18b364eda"
 };
 
 // Initialize Firebase
