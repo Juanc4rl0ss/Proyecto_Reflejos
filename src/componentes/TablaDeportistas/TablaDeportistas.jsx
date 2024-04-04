@@ -19,12 +19,12 @@ const TablaDeportistas = ({filtros}) => {
             </tr>
           </thead>
           <tbody>
-            {list.map((deportista) => (
-              <tr key={deportista.id}>
-                <td>{deportista.nombre + " " + deportista.apellido1 + " " + deportista.apellido2}</td>
-                <td>{deportista.deporte}</td>
+            {list.map(({id,nombre,apellido1,apellido2,deporte}) => (
+              <tr key={id}>
+                <td>{nombre + " " + apellido1 + " " + apellido2}</td>
+                <td>{deporte}</td>
                 <td>
-                  <Link to={`/deportistas/${deportista.id}`} className="btn btn-outline-primary btn-sm">
+                  <Link to={`/deportistas/${id}`} className="btn btn-outline-primary btn-sm">
                     Ver detalles
                   </Link>
                 </td>
