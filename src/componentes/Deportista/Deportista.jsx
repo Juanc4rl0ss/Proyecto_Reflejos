@@ -28,9 +28,22 @@ const Deportista = (props) => {
     pTiempoDesc,
   } = props;
 
-  /*ésta sería otra opción
-  const Usuario=({nombre,apellido1,apellido2,club,deporte,fechanacimiento})=>{ 
-  */
+  const datosTabla = [
+    { descripcion: "Nombre", detalle: pNombre },
+    { descripcion: "Tipo", detalle: pTipo },
+    { descripcion: "Distancia", detalle: pDistancia },
+    { descripcion: "Ciclos", detalle: pCiclos },
+    { descripcion: "Tiempo ejercicio", detalle: pTiempoEjer },
+    { descripcion: "Tiempo descanso", detalle: pTiempoDesc },
+    { descripcion: "Fecha", detalle: fechaR },
+    { descripcion: "Distancia dispositivo", detalle: distanciaDispositivo },
+    { descripcion: "Tiempo de reacción", detalle: tiempoReac },
+    { descripcion: "Tiempo total ejercido", detalle: tiempoEjer },
+    { descripcion: "Tiempo total empleado", detalle: tiempoEmpleado },
+    { descripcion: "Número de fallos", detalle: nFallos },
+  ];
+
+
 
   const [toggleState, setToggleState] = useState(1);
 
@@ -39,113 +52,88 @@ const Deportista = (props) => {
   };
 
   return (
-    <div>
-      <div className="tabContainer">
-        <h2>
-          <span className="nombre">{`${nombre} ${apellido1} ${apellido2}`}</span>
-        </h2>
-        <div className="menu">
-          <div
-            className={toggleState === 1 ? "tabs activeTabs" : "tabs"}
-            onClick={() => toggleTab(1)}
-          >
-            Perfil
-          </div>
-          <div
-            className={toggleState === 2 ? "tabs activeTabs" : "tabs"}
-            onClick={() => toggleTab(2)}
-          >
-            Resultados
+  <div>
+          <div className="tabContainer d-flex justify-content-between align-items-center py-3" style={{ backgroundColor: '#d9d9d9' }}>
+        <div className="w-100 text-center">
+          <h2>
+            <span className="text-white">{nombre} {apellido1} {apellido2}</span>
+          </h2>
+        </div>
+        <div className="d-flex justify-content-end">
+          <div className="menu d-flex">
+            <div
+              className={`px-2 ${toggleState === 1 ? "activeTabs" : ""} mb-3 me-3`}
+              onClick={() => toggleTab(1)}
+            >
+              Perfil
+            </div>
+            <div
+              className={`px-2 ${toggleState === 2 ? "activeTabs" : ""} mb-3 me-3`}
+              onClick={() => toggleTab(2)}
+            >
+              Resultados
+            </div>
           </div>
         </div>
       </div>
 
       <div className={toggleState === 1 ? "content activeContent" : "content"}>
-        <div className="datos">
+      <div className="bg-white m-2 p-3 border border-3 border-secondary">
           <h3>Datos Personales</h3>
           <h4>
-            Nombre:&nbsp;&nbsp; <span className="estiloDatos">{nombre}</span>{" "}
-            <span className="estiloDatos">{apellido1}</span>{" "}
-            <span className="estiloDatos">{apellido2}</span>{" "}
+            Nombre:&nbsp;&nbsp; <span className="text-secondary">{nombre}</span>{" "}
+            <span className="text-secondary">{apellido1}</span>{" "}
+            <span className="text-secondary">{apellido2}</span>{" "}
           </h4>
           <h4>
-            Club:&nbsp; &nbsp; <span className="estiloDatos">{club}</span>
+            Club:&nbsp; &nbsp; <span className="text-secondary">{club}</span>
           </h4>
           <h4>
-            Deporte: &nbsp; &nbsp;<span className="estiloDatos">{deporte}</span>
+            Deporte: &nbsp; &nbsp;<span className="text-secondary">{deporte}</span>
           </h4>
           <h4>
             Fecha de nacimiento: &nbsp; &nbsp;{" "}
-            <span className="estiloDatos">{fechanacimiento}</span>
+            <span className="text-secondary">{fechanacimiento}</span>
           </h4>
         </div>
-        <div className="datos">
+
+        <div className="bg-white m-2 p-3 border border-3 border-secondary">
           <h3>Historia clínica</h3>
           <h4>
             Descripción: &nbsp; &nbsp;{" "}
-            <span className="esitlosDatos">{descripcion}</span>{" "}
+            <span className="text-secondary">{descripcion}</span>{" "}
           </h4>
-          <h4>
-            Ejercicio rehabilitación:{" "}
-            <span className="estiloDatos">{ejercicio} </span>
-          </h4>
-          <ul>
-            <li>
-              Fecha de inicio: <span className="estiloDatos">{inicio} </span>{" "}
-            </li>
-            <li>
-              Fecha de fin: <span className="estiloDatos">{fin} </span>
-            </li>
-          </ul>
+          <div>
+        <h4>
+          Ejercicio rehabilitación: <span className="text-secondary">{ejercicio}</span>
+        </h4>
+        <div className="small">
+          <h6>Fecha de inicio: <span className="text-secondary">{inicio}</span></h6>
+          <h6>Fecha de fin: <span className="text-secondary">{fin}</span></h6>
+        </div>
+      </div>
         </div>
       </div>
 
       <div className={toggleState === 2 ? "content activeContent" : "content"}>
-        <div className="datos">
-          <h4>
-            Nombre: <span className="estiloDatos">{pNombre}</span>{" "}
-          </h4>
-          <h4>
-            Tipo: <span className="estiloDatos">{pTipo} </span>
-          </h4>
-          <h4>
-            Distancia: <span className="estiloDatos">{pDistancia}</span>{" "}
-          </h4>
-          <h4>
-            Ciclos: <span className="estiloDatos">{pCiclos} </span>
-          </h4>
-          <h4>
-            Tiempo ejercicio:{" "}
-            <span className="estiloDatos">{pTiempoEjer} </span>
-          </h4>
-          <h4>
-            Tiempo descanso: <span className="estiloDatos">{pTiempoDesc} </span>
-          </h4>
-        </div>
-        <div className="datos">
-          <h4>
-            Fecha: <span className="estiloDatos">{fechaR}</span>{" "}
-          </h4>
-          <h4>
-            Distancia dispositivo:{" "}
-            <span className="estiloDatos">{distanciaDispositivo} </span>
-          </h4>
-          <h4>
-            Timepo de reacción:{" "}
-            <span className="estiloDatos">{tiempoReac}</span>{" "}
-          </h4>
-          <h4>
-            Tiempo total ejercido:{" "}
-            <span className="estiloDatos">{tiempoEjer} </span>
-          </h4>
-          <h4>
-            Tiempo total empleado:{" "}
-            <span className="estiloDatos">{tiempoEmpleado} </span>
-          </h4>
-          <h4>
-            Numero de fallos: <span className="estiloDatos">{nFallos} </span>
-          </h4>
-        </div>
+        <table className="table bg-white m-2 p-3 border border-3 border-secondary">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Detalle</th>
+            </tr>
+          </thead>
+          <tbody>
+            {datosTabla.map((item, index) => (
+              <tr key={index}>
+                <th scope="row">{index + 1}</th>
+                <td>{item.descripcion}</td>
+                <td className="text-secondary">{item.detalle}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
