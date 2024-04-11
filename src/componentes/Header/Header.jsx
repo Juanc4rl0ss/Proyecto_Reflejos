@@ -45,7 +45,7 @@ const Header = () => {
       <Link className="nav-link" to="/deportistas">Deportistas</Link>
       </li>
       <li className="nav-item">
-      <Link  className="nav-link" to="/login">Cerrar sesión</Link>
+      <button  className="nav-link" onClick={cerrarSesion}>Cerrar sesión</button>
       </li>
      
     </ul>
