@@ -24,22 +24,39 @@ const Header = () => {
   };
 
   return (
-    <header className="cabecera">
-      <h1>Reflejos</h1>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/deportistas">Deportistas</Link>
-          </li>
-        </ul>
-      </nav>
-      <button className="cerrar" onClick={cerrarSesion}>
-        Cerrar sesión
-      </button>
+    
+    <div className="container">
+    <div className="container-cabecera row ">
+    <header className="cabecera col-md-12">
+      <h1 className="titulo text-center" >Reflejos</h1>
+      
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
+  </button>
+  <div className="collapse navbar-collapse" id="navbarNav">
+    
+    <ul className="navbar-nav ">
+      <li className="nav-item active">
+      <Link className="nav-link" to="/home">Home</Link>
+      </li>
+      <li className="nav-item">
+      <Link className="nav-link" to="/deportistas">Deportistas</Link>
+      </li>
+      <li className="nav-item">
+      <Link  className="nav-link" to="/login">Cerrar sesión</Link>
+      </li>
+     
+    </ul>
+  </div>
+  
+</nav>
+
+    
     </header>
+    </div>
+</div>
   );
 };
 

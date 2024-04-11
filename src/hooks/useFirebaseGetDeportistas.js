@@ -28,6 +28,7 @@ function useFirebaseGetDeportistas(filtros) {
         listDeportistas.push(deportista);
       });
       setList(listDeportistas);
+      
       setLoading(false);
       setError(false);
     } catch (e) {

@@ -17,9 +17,9 @@ const SelectDeportistas = ({ onChangeDeportista, defaultValue }) => {
           onChange={(e) => onChangeDeportista(e.target.value)}
         >
           <option value="">Elija un deportista</option>
-          {list.map(({ id, nombre, apellido }) => (
+          {list.map(({ id, nombre, apellido1,apellido2 }) => (
             <option key={id} value={id}>
-              {nombre} {apellido}
+              {nombre} {apellido1} {apellido2}
             </option>
           ))}
         </select>

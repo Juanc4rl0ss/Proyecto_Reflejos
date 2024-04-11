@@ -9,6 +9,7 @@ const Home = () => {
   const [filtroApellido1, setFiltroApellido1] = useState("");
   const [filtroApellido2, setFiltroApellido2] = useState("");
   const [filtroDeporte, setFiltroDeporte] = useState("");
+
   // Los filtros que se aplicaran al pulsar el boton buscar
   const [filtros, setFiltros] = useState(null);
 
@@ -64,7 +65,12 @@ const Home = () => {
               Nombre
             </label>
             <div className="col-sm-10">
-              <input type="text" className="form-control" id="nombre" onChange={(e) => handleChangeNombre(e)}></input>
+              <input
+                type="text"
+                className="form-control"
+                id="nombre"
+                onChange={(e) => handleChangeNombre(e)}
+              ></input>
             </div>
           </div>
           <div className="row mb-3">
@@ -98,8 +104,14 @@ const Home = () => {
               Deporte
             </label>
             <div className="col-sm-10">
-              <select id="deporte" defaultValue="" className="form-select" onChange={(e) => handleChangeDeporte(e)}>
+              <select
+                id="deporte"
+                defaultValue=""
+                className="form-select"
+                onChange={(e) => handleChangeDeporte(e)}
+              >
                 <option value="">Cualquier deporte</option>
+
                 <option value="Taekwondo">Taekwondo</option>
                 <option value="Ciclismo">Ciclismo</option>
                 <option value="Futbol">Futbol</option>

@@ -1,4 +1,14 @@
 /* Aquí se puede añadir una hoja de estilo para cada componente, le pongo el mismo nombre que los componentes,para mayor claridad */
-.page-home {
 
+.filtros{
+    padding-top: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.btn{
+    background-color: #3c95d4;
+}
+.btn:hover{
+    background-color: #3c95d4;
+    
 }

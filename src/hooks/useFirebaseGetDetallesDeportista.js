@@ -19,7 +19,8 @@ function useFirebaseGetDetallesDeportista(idDeportista) {
       let detalles = null;
       if (snapshotDeportista.exists()) {
         const userData = snapshotDeportista.data();
-
+       
+    
         // Solicitudes adicionales
         let resultadosClinicos = userData.historiaclinica[0]._key.path.segments[6];
 
@@ -32,12 +33,21 @@ function useFirebaseGetDetallesDeportista(idDeportista) {
         const docRefResultados = doc(db, "resultados", resultados);
         const docSnapResultados = await getDoc(docRefResultados);
         const resultado = docSnapResultados.exists() ? docSnapResultados.data() : null;
-
+ 
         //cambio parametro para que lo coga automático
         const idPrograma = resultado.idprograma.id;
         const docRefPrograma = doc(db, "programas", idPrograma);
         const docSnapPrograma = await getDoc(docRefPrograma);
         const programa = docSnapPrograma.exists() ? docSnapPrograma.data() : null;
+
+        const idTipo=resultado.tipoejercicio.id;
+        const docRefTipo=doc(db, "categorias", idTipo);
+        const docSnapTipo=await getDoc(docRefTipo);
+        const tipo=docSnapTipo.exists() ? docSnapTipo.data() : null;
+        //mando el nombre de la propiedad de la categoria para mostrarla en panelDetalles
+        const keysTipo=Object.keys(tipo);
+        const nombreTipo=keysTipo[0];
+
 
         // Almacenar los resultados en el array datos
         detalles = {
@@ -45,6 +55,7 @@ function useFirebaseGetDetallesDeportista(idDeportista) {
           historiaClinica: historiaClinica,
           resultados: resultado,
           programa: programa,
+          tipo: nombreTipo,
         };
       } else {
         console.log("No se encontraron datos del usuario seleccionado.");

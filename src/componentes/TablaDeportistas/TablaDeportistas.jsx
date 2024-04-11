@@ -3,6 +3,7 @@ import "./TablaDeportistas.css";
 import Loading from "../../componentes/Loading/Loading";
 import useFirebaseGetDeportistas from "../../hooks/useFirebaseGetDeportistas";
 import Mensaje from "../Deportista/Mensaje/Mensaje";
+import "./TablaDeportistas.css";
 
 const TablaDeportistas = ({filtros}) => {
   const { list, loading, error} = useFirebaseGetDeportistas(filtros);
@@ -29,7 +30,7 @@ const TablaDeportistas = ({filtros}) => {
                 <td>{nombre + " " + apellido1 + " " + apellido2}</td>
                 <td>{deporte}</td>
                 <td>
-                  <Link to={`/deportistas/${id}`} className="btn btn-outline-primary btn-sm">
+                  <Link to={`/deportistas/${id}`} className="btn btn-outline-primary btn-sm link">
                     Ver detalles
                   </Link>
                 </td>

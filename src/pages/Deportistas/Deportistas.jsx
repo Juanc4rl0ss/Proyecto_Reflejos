@@ -19,7 +19,7 @@ const Deportistas = () => {
   return (
     <main className="bg-white ml-2">
       <Header />
-      <section className="d-flex flex-column justify-content-center w-100 mt-4">
+      <section className="container d-flex flex-column justify-content-center w-100 mt-4">
 
         <div className="filtros mb-4">
           <div className="row mb-3">

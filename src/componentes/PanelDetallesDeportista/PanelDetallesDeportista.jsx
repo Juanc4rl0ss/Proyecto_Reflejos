@@ -6,6 +6,7 @@ import Mensaje from "../Deportista/Mensaje/Mensaje";
 
 const PanelDetallesDeportista = ({ idDeportista }) => {
   const { detallesDeportista, loading, error } = useFirebaseGetDetallesDeportista(idDeportista);
+   
   if (error) {
     return <Mensaje tipo="danger">Ha ocurrido un error al consultar Firebase</Mensaje>;
   }
@@ -14,6 +15,7 @@ const PanelDetallesDeportista = ({ idDeportista }) => {
     <>
       {loading && <Loading />}
       {!loading && detallesDeportista != null && (
+
         <Deportista
           nombre={detallesDeportista.datosPersonales.nombre}
           apellido1={detallesDeportista.datosPersonales.apellido1}
@@ -32,7 +34,7 @@ const PanelDetallesDeportista = ({ idDeportista }) => {
           tiempoEmpleado={detallesDeportista.resultados.tiempototalempleado}
           nFallos={detallesDeportista.resultados.numerofallos}
           pNombre={detallesDeportista.programa.descripcion}
-          pTipo={detallesDeportista.programa.tipo}
+          pTipo={detallesDeportista.tipo}
           pDistancia={detallesDeportista.programa.distancia}
           pCiclos={detallesDeportista.programa.nciclos}
           pTiempoEjer={detallesDeportista.programa.tejercicio}

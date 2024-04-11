@@ -1,0 +1,28 @@
+.boton{
+    width: 120px;
+    text-align: center;
+    height: 30px;
+    padding-top: 2px;
+    letter-spacing: 2px;
+}
+.boton:hover{
+    
+    cursor: pointer;
+    transform: scale(1.2);
+
+}
+.activeTabs{
+    box-shadow: 4px 8px 6px -2px  #ccc;
+    box-shadow: 4px 8px 6px -3px  #3c95d4;
+    background-color: #ECECEC;
+    border: none;
+ 
+}
+.activeTabs:hover{
+    
+    
+    cursor: pointer;
+}
+.menu{
+    background-color: #D9D9D9;transform: translateZ(12px);
+}
