@@ -23,9 +23,7 @@ const PanelDetallesDeportista = ({ idDeportista }) => {
           club={detallesDeportista.datosPersonales.club}
           deporte={detallesDeportista.datosPersonales.deporte}
           fechanacimiento={detallesDeportista.datosPersonales.fechanacimiento.toDate().toLocaleDateString()}
-          descripcion={detallesDeportista.historiaClinica.descripcion}
-          inicio={detallesDeportista.historiaClinica.fechainicio.toDate().toLocaleDateString()}
-          fin={detallesDeportista.historiaClinica.fechafin.toDate().toLocaleDateString()}
+          historiasClinicas={detallesDeportista.historiasClinicas} 
           distancia={detallesDeportista.resultados.distanciaaldispositivo}
           fechaR={detallesDeportista.resultados.fecha.toDate().toLocaleDateString()}
           distanciaDispositivo={detallesDeportista.resultados.distanciaaldispositivo}

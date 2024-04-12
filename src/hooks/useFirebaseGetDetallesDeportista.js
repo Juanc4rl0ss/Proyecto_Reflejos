@@ -21,12 +21,21 @@ function useFirebaseGetDetallesDeportista(idDeportista) {
         const userData = snapshotDeportista.data();
        
     
-        // Solicitudes adicionales
-        let resultadosClinicos = userData.historiaclinica[0]._key.path.segments[6];
+        // Recuperamos toda la información de las historias clínicas
+        const historiasClinicasPromesas = userData.historiaclinica.map(async ref => {
+          const refDoc = ref._key.path.segments[6]; 
+          const docRefClinicos = doc(db, "historiaclinica", refDoc);
+          const docSnapClinicos = await getDoc(docRefClinicos);
+          return docSnapClinicos.exists() ? docSnapClinicos.data() : null;
+        });
+
+        // Resuelve todas las promesas y filtra los posibles valores nulos
+        const historiasClinicas = await Promise.all(historiasClinicasPromesas);
+        const historiasClinicasFiltradas = historiasClinicas.filter(hc => hc !== null);
 
         let resultados = userData.resultados[0]._key.path.segments[6];
 
-        const docRefClinicos = doc(db, "historiaclinica", resultadosClinicos);
+        const docRefClinicos = doc(db, "historiaclinica", resultados);
         const docSnapClinicos = await getDoc(docRefClinicos);
         const historiaClinica = docSnapClinicos.exists() ? docSnapClinicos.data() : null;
 
@@ -52,7 +61,7 @@ function useFirebaseGetDetallesDeportista(idDeportista) {
         // Almacenar los resultados en el array datos
         detalles = {
           datosPersonales: userData,
-          historiaClinica: historiaClinica,
+          historiasClinicas: historiasClinicasFiltradas,
           resultados: resultado,
           programa: programa,
           tipo: nombreTipo,

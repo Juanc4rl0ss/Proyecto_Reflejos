@@ -1,8 +1,9 @@
 //Aquí elijes la ruta de la hoja de estilos,y con eso ya todo lo que se hace aquí, se maqueta de manera modular
-import { useState } from "react";
+import { useState} from "react";
 import "./Deportista.css";
 
 const Deportista = (props) => {
+
   const {
     nombre,
     apellido1,
@@ -10,23 +11,20 @@ const Deportista = (props) => {
     club,
     deporte,
     fechanacimiento,
-    descripcion,
-    ejercicio,
-    inicio,
-    fin,
-    fechaR,
+    historiasClinicas,  
     distanciaDispositivo,
+    fechaR,  
     tiempoReac,
     tiempoEjer,
     tiempoEmpleado,
     nFallos,
-    pNombre,
-    pTipo,
+    pNombre,  
+    pTipo,   
     pDistancia,
     pCiclos,
     pTiempoEjer,
     pTiempoDesc,
-  } = props;
+} = props;
 
   const datosTabla = [
     { descripcion: "Nombre", detalle: pNombre },
@@ -47,7 +45,10 @@ const Deportista = (props) => {
 
   const toggleTab = (index) => {
     setToggleState(index);
-    window.scrollTo(0, 0);
+   
+      // Hacer scroll hacia arriba
+      window.scrollTo(0, 0);
+
   };
 
   return (
@@ -112,27 +113,54 @@ const Deportista = (props) => {
                 </h4>
 
                 <div className="mt-4">
-                  <h3>Historia Clínica</h3>
-                  <h4>
-                    Descripción:{" "}
-                    <span className="text-secondary">{descripcion}</span>
-                  </h4>
-                  <div>
-                    <h4>
-                      Ejercicio rehabilitación:{" "}
-                      <span className="text-secondary">{ejercicio}</span>
-                    </h4>
-                    <div className="small">
-                      <h6>
-                        Fecha de inicio:{" "}
-                        <span className="text-secondary">{inicio}</span>
-                      </h6>
-                      <h6>
-                        Fecha de fin:{" "}
-                        <span className="text-secondary">{fin}</span>
-                      </h6>
-                    </div>
-                  </div>
+                <h3>Historia Clínica</h3>
+                <table className="table table-hover">
+              <thead className="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Inicio</th>
+                  <th scope="col">Fin</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {historiasClinicas && historiasClinicas.length > 0 ? (
+                  historiasClinicas.map((historia, index) => (
+                    <tr key={index}>
+                      <th scope="row">{index + 1}</th>
+                      <td>{historia.descripcion}</td>
+                      <td>{historia.fechainicio ? new Date(historia.fechainicio.seconds * 1000).toLocaleDateString() : 'Fecha no disponible'}</td>
+                      <td>{historia.fechafin ? new Date(historia.fechafin.seconds * 1000).toLocaleDateString() : 'Fecha no disponible'}</td>
+                      {/* Celda vacía en la primera fila */}
+                      {index === 0 && (
+                        <td rowSpan={historiasClinicas.length}>
+                          <button
+                          type="button"
+                          className={`px-2 btn btn-outline-dark text-decoration-none ${
+                            toggleState === 2 ? "activeTabs" : ""
+                          } mb-3 me-3 boton`}
+                          onClick={() => {
+                            toggleTab(2);
+                            window.scrollTo({
+                              top: document.documentElement.scrollHeight,
+                              behavior: "smooth"
+                            });
+                          }}
+                        >
+                          Resultado
+                        </button>
+                        </td>
+                      )}
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4">No hay historias clínicas disponibles.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
                 </div>
               </div>
             </div>
