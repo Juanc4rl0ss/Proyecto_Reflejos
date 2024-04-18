@@ -1,18 +1,29 @@
-import { useState } from "react";
+import {  useEffect, useState } from "react";
 import { where } from "firebase/firestore";
 import Header from "../../componentes/Header/Header";
 import TablaDeportistas from "../../componentes/TablaDeportistas/TablaDeportistas";
 import "./Home.css";
+import useFirebaseDeportes from '../../hooks/useFirebaseDeportes';
+import { toCapital } from "../../hooks/upperCaptial";
 
 const Home = () => {
+
   const [filtroNombre, setFiltroNombre] = useState("");
   const [filtroApellido1, setFiltroApellido1] = useState("");
   const [filtroApellido2, setFiltroApellido2] = useState("");
   const [filtroDeporte, setFiltroDeporte] = useState("");
 
+  const { deportesUnicos } = useFirebaseDeportes();
+  console.log(deportesUnicos);
+ 
+  
+
+
+  
   // Los filtros que se aplicaran al pulsar el boton buscar
   const [filtros, setFiltros] = useState(null);
 
+  
   // Metodo que maneja el evento de buscar
   const handleClickBuscar = () => {
     let nuevosFiltros = [];
@@ -33,19 +44,21 @@ const Home = () => {
 
   // Metodo que maneja el cambio de nombre en el filtro
   const handleChangeNombre = (e) => {
-    let nombre = e.target.value;
+    let nombre = toCapital( e.target.value);
+  
+   
     setFiltroNombre(nombre);
   };
 
   // Metodo que maneja el cambio del primer apellido en el filtro
   const handleChangeApellido1 = (e) => {
-    let deporte = e.target.value;
+    let deporte = toCapital(e.target.value);
     setFiltroApellido1(deporte);
   };
 
   // Metodo que maneja el cambio del segundo apellido en el filtro
   const handleChangeApellido2 = (e) => {
-    let deporte = e.target.value;
+    let deporte = toCapital(e.target.value);
     setFiltroApellido2(deporte);
   };
 
@@ -58,6 +71,7 @@ const Home = () => {
   return (
     <main className="page-home">
       <Header />
+      <h1 className="text-center mt-5">Buscador de deportistas</h1>
       <section className="container mt-4">
         <div className="filtros mb-4">
           <div className="row mb-3">
@@ -111,12 +125,14 @@ const Home = () => {
                 onChange={(e) => handleChangeDeporte(e)}
               >
                 <option value="">Cualquier deporte</option>
-
-                <option value="Taekwondo">Taekwondo</option>
+                {deportesUnicos.map((deporte)=>(
+                  <option value={deporte} key={deporte}>{deporte}</option>
+                ))}
+               {/* <option value="Taekwondo">Taekwondo</option>
                 <option value="Ciclismo">Ciclismo</option>
                 <option value="Futbol">Futbol</option>
                 <option value="Baloncesto">Baloncesto</option>
-                <option value="Tenis">Tenis</option>
+              <option value="Tenis">Tenis</option>*/}
               </select>
             </div>
           </div>
@@ -135,3 +151,4 @@ const Home = () => {
 };
 
 export default Home;
+

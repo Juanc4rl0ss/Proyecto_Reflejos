@@ -3,15 +3,17 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import "./Login.css";
-
 const Login = () => {
-  // Estados para los campos Email y Contraseña
-  const [email, setEmail] = useState("");
-  const [contraseña, setContraseña] = useState("");
+  // Estados para los inputs del formulario, creo objeto para usar atributo name y recoger cambios
 
-  // Estados para los placeholder Email y Contraseña
-  const [emailPlace, setEmailPlace] = useState("Email");
-  const [passPlace, setPassPlace] = useState("Contraseña");
+  const [inputs, setInputs]=useState({
+    Email:"",
+    Contraseña:""
+  });
+
+  // Estados para los placeholder Email y Contraseña controla hidden
+ 
+
 
   // Estados para los errores en campos Email y Contraseña
   const [errorEmail, setEmailError] = useState("");
@@ -46,38 +48,48 @@ const Login = () => {
   const navigate = useNavigate();
 
   // Se quita el placeholder del input y se pone visible su label
-  const cambioInput = (e, setInputPlace) => {
-    let id = e.target.id;
+  const handleInput = (e) => {
+    //busco id input es igual a for label
+    let id=e.target.id;
     let label = document.querySelector(`label[for=${id}]`);
-    setInputPlace("");
+  
     label.removeAttribute("hidden");
+  
   };
 
   // Se rellena el placeholder y se oculta la label del imput
-  const resetInput = (e, setInputPlace, placeholder) => {
+  const handleReset = (e) => {
     if (e.target.value == "") {
       let id = e.target.id;
       let label = document.querySelector(`label[for=${id}]`);
-      setInputPlace(placeholder);
+     
       label.setAttribute("hidden", "");
     }
+    
   };
 
-  // Se guarda el valor del input y se quita el mensaje de error si lo hubiera
-  const changeInputs = (e, setInput, setInputError) => {
-    setInput(e.target.value);
+  /* Se guarda el valor del input y se quita el mensaje de error si lo hubiera
+  uso e.target.name para relacionar objeto de los inputs y poner valor*/
+  const handleInputs = (e, setInput, setInputError) => {
+    setInput({
+      ...inputs,
+      [e.target.name]: e.target.value
+    });
     setInputError("");
   };
 
   // Función que inicia sesión con el email y contraseña introducidos en el formulario
   const iniciarSesion = () => {
-    signInWithEmailAndPassword(auth, email, contraseña)
+    console.log(inputs);
+    signInWithEmailAndPassword(auth, inputs.Email, inputs.Contraseña)
       // Si se logea con exito
       .then((userCredential) => {
+       
+        console.log(userCredential);
         console.log(
           `Se ha iniciado sesión correctamente, usuario: ${userCredential.user.email}`
         );
-        // Redirigimos a la página Deportistas si hemos conseguido iniciar sesión.
+        // Redirigimos a la página Home si hemos conseguido iniciar sesión.
         navigate("/home");
       })
       // Si no se consigue logear, se muestra el error
@@ -132,39 +144,44 @@ const Login = () => {
           </div>
           <div className="inputs">
             <div className="iconos">
-              <label id="labelEmail" htmlFor="email" hidden>
-                Correo electrónico
+             
+      <label id="Email" htmlFor="Email" hidden>
+                Correo electronico
               </label>
+            
+            
 
               <input
-                id="email"
+                id="Email"
                 type="email"
-                value={email}
-                onClick={(e) => cambioInput(e, setEmailPlace)}
-                onChange={(e) => changeInputs(e, setEmail, setEmailError)}
+                value={inputs.Email}
+                name="Email"
+                onClick={(e) => handleInput(e)}
+                onChange={(e) => handleInputs(e, setInputs, setEmailError)}
                 onBlur={(e) =>
-                  resetInput(e, setEmailPlace, "Correo electrónico")
+                  handleReset(e)
                 }
-                placeholder={emailPlace}
+                placeholder="Correo electrónico"
               />
               <img src="\src\assets\inicioBlanco.svg" alt="" />
               {errorEmail && <div className="error">{errorEmail}</div>}
             </div>
             <div className="iconos">
-              <label id="labelPass" htmlFor="contraseña" hidden>
+              <label id="Contraseña" htmlFor="Contraseña" hidden>
                 Contraseña
               </label>
 
               <input
-                id="contraseña"
+                id="Contraseña"
                 type="password"
-                value={contraseña}
-                onClick={(e) => cambioInput(e, setPassPlace)}
+                value={inputs.pass}
+                name="Contraseña"
+                onClick={(e) => handleInput(e)}
                 onChange={(e) =>
-                  changeInputs(e, setContraseña, setContraseñaError)
+                  handleInputs(e, setInputs, setContraseñaError)
                 }
-                onBlur={(e) => resetInput(e, setPassPlace, "Contraseña")}
-                placeholder={passPlace}
+                onBlur={(e) => handleReset(e)}
+                placeholder="Contraseña"
               />
               <img src="\src\assets\passBlanco.svg" alt="" />
               {errorContraseña && (

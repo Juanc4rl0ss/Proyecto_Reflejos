@@ -24,19 +24,7 @@ const PanelDetallesDeportista = ({ idDeportista }) => {
           deporte={detallesDeportista.datosPersonales.deporte}
           fechanacimiento={detallesDeportista.datosPersonales.fechanacimiento.toDate().toLocaleDateString()}
           historiasClinicas={detallesDeportista.historiasClinicas} 
-          distancia={detallesDeportista.resultados.distanciaaldispositivo}
-          fechaR={detallesDeportista.resultados.fecha.toDate().toLocaleDateString()}
-          distanciaDispositivo={detallesDeportista.resultados.distanciaaldispositivo}
-          tiempoReac={detallesDeportista.resultados.mediatiemporeaccion}
-          tiempoEjer={detallesDeportista.resultados.tiempototalejercicio}
-          tiempoEmpleado={detallesDeportista.resultados.tiempototalempleado}
-          nFallos={detallesDeportista.resultados.numerofallos}
-          pNombre={detallesDeportista.programa.descripcion}
-          pTipo={detallesDeportista.tipo}
-          pDistancia={detallesDeportista.programa.distancia}
-          pCiclos={detallesDeportista.programa.nciclos}
-          pTiempoEjer={detallesDeportista.programa.tejercicio}
-          pTiempoDesc={detallesDeportista.programa.tdescanso}
+          resultados={detallesDeportista.resultados} 
         />
       )}
       {!loading && detallesDeportista == null && <Mensaje tipo="warning">No se ha encontrado ese deportista</Mensaje>}

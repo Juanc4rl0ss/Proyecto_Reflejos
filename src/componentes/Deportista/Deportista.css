@@ -1,28 +1,33 @@
-.boton{
-    width: 120px;
-    text-align: center;
-    height: 30px;
-    padding-top: 2px;
-    letter-spacing: 2px;
+.boton {
+  width: 120px;
+  text-align: center;
+  height: 30px;
+  padding-top: 2px;
+  letter-spacing: 2px;
 }
-.boton:hover{
-    
-    cursor: pointer;
-    transform: scale(1.2);
+.boton:hover {
+  cursor: pointer;
+  background-color: #3c95d4;
+  box-shadow: 4px 8px 6px -2px #ccc;
+  transform: translateZ(12px);
+}
+.activeTabs {
+  border-bottom: 2px solid #3c95d4;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+.activeTabs:hover {
+  cursor: pointer;
+}
+.menu {
+  background-color: #d9d9d9;
+  transform: translateZ(12px);
+}
 
-}
-.activeTabs{
-    box-shadow: 4px 8px 6px -2px  #ccc;
-    box-shadow: 4px 8px 6px -3px  #3c95d4;
-    background-color: #ECECEC;
-    border: none;
- 
-}
-.activeTabs:hover{
-    
-    
-    cursor: pointer;
-}
-.menu{
-    background-color: #D9D9D9;transform: translateZ(12px);
+.info-container{
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border: solid #f7f7f9 .2rem;
 }

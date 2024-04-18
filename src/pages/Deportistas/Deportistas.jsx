@@ -19,8 +19,8 @@ const Deportistas = () => {
   return (
     <main className="bg-white ml-2">
       <Header />
+      <h1 className="text-center mt-5">Detalles de deportista</h1>
       <section className="container d-flex flex-column justify-content-center w-100 mt-4">
-
         <div className="filtros mb-4">
           <div className="row mb-3">
             <div className="col">

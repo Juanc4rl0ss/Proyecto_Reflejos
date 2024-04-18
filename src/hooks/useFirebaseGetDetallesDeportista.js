@@ -29,42 +29,48 @@ function useFirebaseGetDetallesDeportista(idDeportista) {
           return docSnapClinicos.exists() ? docSnapClinicos.data() : null;
         });
 
+        const resultadosPromesas = userData.resultados.map(async ref => {
+          const refDoc = ref._key.path.segments[6]; 
+          const docRefresultados = doc(db, "resultados", refDoc);
+          const docSnapResultados = await getDoc(docRefresultados);
+          return docSnapResultados.exists() ? docSnapResultados : null;
+        });
+
         // Resuelve todas las promesas y filtra los posibles valores nulos
         const historiasClinicas = await Promise.all(historiasClinicasPromesas);
         const historiasClinicasFiltradas = historiasClinicas.filter(hc => hc !== null);
+        const resultados = await Promise.all(resultadosPromesas)
+        const resultadosFiltrados = resultados.filter(res => res !== null);
+        let datosResultados = [] 
+        for (let i = 0; i < resultadosFiltrados.length; i++){
+          // Para cada resultado obtenemos el nombre del programa
+          const idPrograma = resultadosFiltrados[i].data().idprograma.id
+          const docRefPrograma = doc(db, "programas", idPrograma);
+          const docSnapPrograma = await getDoc(docRefPrograma);
+          const programa = docSnapPrograma.exists() ? docSnapPrograma.data() : null;
+          
+          // Para cada resultado obtenemos el nombre de la categoria
+          const idTipo=resultadosFiltrados[i].data().tipoejercicio.id;
+          const docRefTipo=doc(db, "categorias", idTipo);
+          const docSnapTipo=await getDoc(docRefTipo);
+          const tipo=docSnapTipo.exists() ? docSnapTipo.data() : null;
+          const keysTipo=Object.keys(tipo)[0];
+          const datosResultado = {
+            idResultado: resultadosFiltrados[i].id,
+            programa: programa,
+            fecha: resultadosFiltrados[i].data().fecha,
+            categoria: keysTipo,
+            dispositivosApagados: resultadosFiltrados[i].data().numerodispositivosapagados,
+            numeroFallos: resultadosFiltrados[i].data().numerofallos
+          }
 
-        let resultados = userData.resultados[0]._key.path.segments[6];
+          datosResultados.push(datosResultado);
+        }
 
-        const docRefClinicos = doc(db, "historiaclinica", resultados);
-        const docSnapClinicos = await getDoc(docRefClinicos);
-        const historiaClinica = docSnapClinicos.exists() ? docSnapClinicos.data() : null;
-
-        const docRefResultados = doc(db, "resultados", resultados);
-        const docSnapResultados = await getDoc(docRefResultados);
-        const resultado = docSnapResultados.exists() ? docSnapResultados.data() : null;
- 
-        //cambio parametro para que lo coga automático
-        const idPrograma = resultado.idprograma.id;
-        const docRefPrograma = doc(db, "programas", idPrograma);
-        const docSnapPrograma = await getDoc(docRefPrograma);
-        const programa = docSnapPrograma.exists() ? docSnapPrograma.data() : null;
-
-        const idTipo=resultado.tipoejercicio.id;
-        const docRefTipo=doc(db, "categorias", idTipo);
-        const docSnapTipo=await getDoc(docRefTipo);
-        const tipo=docSnapTipo.exists() ? docSnapTipo.data() : null;
-        //mando el nombre de la propiedad de la categoria para mostrarla en panelDetalles
-        const keysTipo=Object.keys(tipo);
-        const nombreTipo=keysTipo[0];
-
-
-        // Almacenar los resultados en el array datos
         detalles = {
           datosPersonales: userData,
           historiasClinicas: historiasClinicasFiltradas,
-          resultados: resultado,
-          programa: programa,
-          tipo: nombreTipo,
+          resultados: datosResultados,
         };
       } else {
         console.log("No se encontraron datos del usuario seleccionado.");
