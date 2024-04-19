@@ -41,6 +41,7 @@ function useFirebaseGetDetallesDeportista(idDeportista) {
         const historiasClinicasFiltradas = historiasClinicas.filter(hc => hc !== null);
         const resultados = await Promise.all(resultadosPromesas)
         const resultadosFiltrados = resultados.filter(res => res !== null);
+
         let datosResultados = [] 
         for (let i = 0; i < resultadosFiltrados.length; i++){
           // Para cada resultado obtenemos el nombre del programa

@@ -69,7 +69,6 @@ const Deportista = (props) => {
                       <th scope="col">Descripción</th>
                       <th scope="col">Inicio</th>
                       <th scope="col">Fin</th>
-                      <th scope="col">Resultados</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -88,28 +87,6 @@ const Deportista = (props) => {
                               ? new Date(historia.fechafin.seconds * 1000).toLocaleDateString()
                               : "Fecha no disponible"}
                           </td>
-                          <Link
-                            to={"/historia/" + index}
-                            type="button"
-                            className={`px-2 btn btn-outline-dark text-decoration-none ${
-                              toggleState === 2 ? "activeTabs" : ""
-                            } mb-3 me-3 boton`}
-                          >
-                            Resultado
-                          </Link>
-                          {/* Celda vacía en la primera fila */}
-                          {index === 0 && (
-                            <td rowSpan={historiasClinicas.length}>
-                              <button
-                                type="button"
-                                className={`px-2 btn btn-outline-dark text-decoration-none ${
-                                  toggleState === 2 ? "activeTabs" : ""
-                                } mb-3 me-3 boton`}
-                              >
-                                Resultado
-                              </button>
-                            </td>
-                          )}
                         </tr>
                       ))
                     ) : (
@@ -141,7 +118,7 @@ const Deportista = (props) => {
                         <th scope="col">Categoría</th>
                         <th scope="col">Disp. apagados</th>
                         <th scope="col">Nº de fallos</th>
-                        <th scope="col"></th>
+                        <th scope="col">Detalles</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -155,9 +132,12 @@ const Deportista = (props) => {
                             <td>{resultado.dispositivosApagados}</td>
                             <td>{resultado.numeroFallos}</td>
                             <td>
-                            <Link to={`/resultados/${resultado.idResultado}`} className="btn btn-outline-primary btn-sm link">
-                              Detalles
-                            </Link>
+                              <Link
+                                to={`/resultados/${resultado.idResultado}`}
+                                className="btn btn-outline-primary btn-sm link"
+                              >
+                                Detalles
+                              </Link>
                             </td>
                           </tr>
                         ))

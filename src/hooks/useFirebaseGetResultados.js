@@ -5,6 +5,7 @@ import { app } from "../main";
 // Hook que se encarga de gestionar las llamadas a la coleccion deportistas de Firestore.
 function useFirebaseGetResultados(idResultado) {
   const [datosResultado, setDatosResultado] = useState(null);
+  const [datosPrograma, setDatosPrograma] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -16,10 +17,26 @@ function useFirebaseGetResultados(idResultado) {
       const docResultado = doc(db, "resultados", idResultado);
       const snapshotResultado = await getDoc(docResultado);
       if (snapshotResultado.exists()) {
-        setDatosResultado(snapshotResultado.data());
+        //Obtenemos los datos del resultado y cambiamos el estado
+        const datosresultado = snapshotResultado.data();
+        setDatosResultado(datosresultado);
+        // Obtenemos el nombre de la categoria
+        const idTipo=datosresultado.tipoejercicio.id;
+        const docRefTipo=doc(db, "categorias", idTipo);
+        const docSnapTipo=await getDoc(docRefTipo);
+        const tipo=docSnapTipo.exists() ? docSnapTipo.data() : null;
+        const keysTipo=Object.keys(tipo)[0];
+        datosresultado.tipoejercicio = keysTipo;
+        // Obtenemos los datos del programa relacionado con el resultado
+        const idPrograma = datosresultado.idprograma.id;
+        const docRefPrograma = doc(db, "programas", idPrograma);
+        const docSnapPrograma = await getDoc(docRefPrograma);
+        if (docSnapPrograma.exists()){
+          setDatosPrograma(docSnapPrograma.data());
+        }
         setLoading(false);
         setError(false);
-      }
+      }      
     } catch (e) {
       setDatosResultado(null);
       setError(true);
@@ -35,7 +52,7 @@ function useFirebaseGetResultados(idResultado) {
   }, [idResultado]);
 
   // Devuelve la respuesta de Firestore y el estado de la llamada
-  return { datosResultado, loading, error };
+  return { datosResultado, datosPrograma, loading, error };
 }
 
 export default useFirebaseGetResultados;
