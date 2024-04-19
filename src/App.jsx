@@ -6,7 +6,7 @@ import Deportistas from './pages/Deportistas/Deportistas.jsx';
 import Home from "./pages/Home/Home.jsx";
 import PaginaNoEncontrada from "./pages/PaginaNoEncontrada/PaginaNoEncontrada.jsx";
 import { app } from "./main";
-import Resultados from "./pages/Resultados.jsx";
+import Resultados from "./pages/Resultados/Resultados.jsx";
 
 function App() {
   const navigate = useNavigate();

@@ -15,7 +15,6 @@ const PanelDetallesDeportista = ({ idDeportista }) => {
     <>
       {loading && <Loading />}
       {!loading && detallesDeportista != null && (
-
         <Deportista
           nombre={detallesDeportista.datosPersonales.nombre}
           apellido1={detallesDeportista.datosPersonales.apellido1}
