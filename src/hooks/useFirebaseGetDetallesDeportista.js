@@ -19,28 +19,33 @@ function useFirebaseGetDetallesDeportista(idDeportista) {
       let detalles = null;
       if (snapshotDeportista.exists()) {
         const userData = snapshotDeportista.data();
-       
+ 
     
         // Recuperamos toda la información de las historias clínicas
         const historiasClinicasPromesas = userData.historiaclinica.map(async ref => {
           const refDoc = ref._key.path.segments[6]; 
           const docRefClinicos = doc(db, "historiaclinica", refDoc);
           const docSnapClinicos = await getDoc(docRefClinicos);
+      
           return docSnapClinicos.exists() ? docSnapClinicos.data() : null;
         });
 
         const resultadosPromesas = userData.resultados.map(async ref => {
           const refDoc = ref._key.path.segments[6]; 
+          
           const docRefresultados = doc(db, "resultados", refDoc);
           const docSnapResultados = await getDoc(docRefresultados);
+         
           return docSnapResultados.exists() ? docSnapResultados : null;
         });
 
         // Resuelve todas las promesas y filtra los posibles valores nulos
         const historiasClinicas = await Promise.all(historiasClinicasPromesas);
         const historiasClinicasFiltradas = historiasClinicas.filter(hc => hc !== null);
+     
         const resultados = await Promise.all(resultadosPromesas)
         const resultadosFiltrados = resultados.filter(res => res !== null);
+    
 
         let datosResultados = [] 
         for (let i = 0; i < resultadosFiltrados.length; i++){
@@ -49,7 +54,7 @@ function useFirebaseGetDetallesDeportista(idDeportista) {
           const docRefPrograma = doc(db, "programas", idPrograma);
           const docSnapPrograma = await getDoc(docRefPrograma);
           const programa = docSnapPrograma.exists() ? docSnapPrograma.data() : null;
-          
+       
           // Para cada resultado obtenemos el nombre de la categoria
           const idTipo=resultadosFiltrados[i].data().tipoejercicio.id;
           const docRefTipo=doc(db, "categorias", idTipo);
@@ -66,6 +71,7 @@ function useFirebaseGetDetallesDeportista(idDeportista) {
           }
 
           datosResultados.push(datosResultado);
+        
         }
 
         detalles = {
@@ -73,6 +79,7 @@ function useFirebaseGetDetallesDeportista(idDeportista) {
           historiasClinicas: historiasClinicasFiltradas,
           resultados: datosResultados,
         };
+      
       } else {
         console.log("No se encontraron datos del usuario seleccionado.");
       }

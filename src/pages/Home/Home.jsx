@@ -14,10 +14,9 @@ const Home = () => {
   const [filtroDeporte, setFiltroDeporte] = useState("");
 
   const { deportesUnicos } = useFirebaseDeportes();
-  console.log(deportesUnicos);
+  
  
   
-
 
   
   // Los filtros que se aplicaran al pulsar el boton buscar

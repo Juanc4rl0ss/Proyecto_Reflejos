@@ -1,18 +1,17 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import Header from "../../componentes/Header/Header";
+//import { useParams } from "react-router-dom";
+//import Header from "../../componentes/Header/Header";
 import useFirebaseGetResultados from "../../hooks/useFirebaseGetResultados";
-import Loading
- from "../../componentes/Loading/Loading";
-const Resultados = () => {
-  const { id } = useParams();
+import Loading from "../../componentes/Loading/Loading";
+const Resultados = ({id}) => {
+ // const { id } = useParams();
   const { datosResultado, datosPrograma, loading, error } = useFirebaseGetResultados(id);
   return (
     <>
       {loading && <Loading />}
       {!loading && datosResultado != null && datosPrograma != null &&  (
         <main className="bg-white ml-2">
-          <Header />
+          {/*<Header />*/}
           <h1 className="text-center mt-5">Detalles de resultado</h1>
           <section className="container d-flex flex-column justify-content-center w-100 mt-4">
             <div className="col-md-12">

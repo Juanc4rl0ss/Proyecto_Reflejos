@@ -6,7 +6,7 @@ import Deportistas from './pages/Deportistas/Deportistas.jsx';
 import Home from "./pages/Home/Home.jsx";
 import PaginaNoEncontrada from "./pages/PaginaNoEncontrada/PaginaNoEncontrada.jsx";
 import { app } from "./main";
-import Resultados from "./pages/Resultados/Resultados.jsx";
+
 
 function App() {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ function App() {
       <Route path="/login" element={ <Login /> } />
       <Route path="/home" element={ <Home /> } />
       <Route path="/deportistas/:id?" element={ <Deportistas /> } />
-      <Route path="/resultados/:id?" element={ <Resultados /> } />
+   
       <Route path="*" element={<PaginaNoEncontrada children={"Oups!, lo sentimos pero la página que busca no se encuentra"} />} />
     </Routes>
   );
