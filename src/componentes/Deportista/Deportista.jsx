@@ -6,13 +6,19 @@ import Mensaje from "./Mensaje/Mensaje";
 //import Resultados from "../../pages/Resultados/Resultados";
 
 const Deportista = (props) => {
+  let inicialTab = getCookieByName("tab");
+  if (inicialTab === null){
+    inicialTab = 1;
+  }
   const { nombre, apellido1, apellido2, club, deporte, fechanacimiento, historiasClinicas, resultados } = props;
-  const [toggleState, setToggleState] = useState(1);
+  const [toggleState, setToggleState] = useState(inicialTab);
   const [showResult, setShowResult] = useState(false);
 
   const toggleTab = (index) => {
     setToggleState(index);
-
+    if (index ==1 || index == 2){
+      document.cookie="tab=" + index + "; max-age=86400";
+    }
     // Hacer scroll hacia arriba
     window.scrollTo(0, 0);
   };
@@ -38,6 +44,16 @@ const Deportista = (props) => {
     setShowResult(true);
   };
 
+  function getCookieByName(name){
+    const cookies = document.cookie.split(";");
+    for (let i=0; i<cookies.length;i++){
+      if (cookies[i].includes(name + "=" )){
+        return cookies[i].split("=")[1];
+      }
+    }
+    return null;
+  }
+
   return (
     <div>
       <div
@@ -55,20 +71,20 @@ const Deportista = (props) => {
       <div className="menu d-flex justify-content-center">
         <div className=" d-flex ">
           <div
-            className={`px-2 ${toggleState === 1 ? "activeTabs" : ""} mb-3 me-3 boton `}
+            className={`px-2 ${toggleState == 1 ? "activeTabs" : ""} mb-3 me-3 boton `}
             onClick={() => toggleTab(1)}
           >
             Perfil
           </div>
-          <div className={`px-2 ${toggleState === 2 ? "activeTabs" : ""} mb-3 me-3 boton`} onClick={() => toggleTab(2)}>
+          <div className={`px-2 ${toggleState == 2 ? "activeTabs" : ""} mb-3 me-3 boton`} onClick={() => toggleTab(2)}>
             Resultados
           </div>
           {toggleState === 3 && (
-            <div className={`px-3 ${toggleState === 3 ? "activeTabs" : ""} mb-3 me-3 boton`}>Detalles</div>
+            <div className={`px-3 ${toggleState == 3 ? "activeTabs" : ""} mb-3 me-3 boton`}>Detalles</div>
           )}
         </div>
       </div>
-      <div className={toggleState === 1 ? "content activeContent" : "content"}>
+      <div className={toggleState == 1 ? "content activeContent" : "content"}>
         <div className="justify-content-center">
           <div className="col-md-12">
             <div className="card mb-3 mt-3">
@@ -129,7 +145,7 @@ const Deportista = (props) => {
         </div>
       </div>
 
-      <div className={toggleState === 2 ? "content activeContent" : "content"}>
+      <div className={toggleState == 2 ? "content activeContent" : "content"}>
         <div className="container my-3">
           <div className="row justify-content-center">
             <div className="col-md-12">
@@ -186,7 +202,7 @@ const Deportista = (props) => {
           </div>
         </div>
       </div>
-      <div className={toggleState === 3 ? "content activeContent" : "content"}>
+      <div className={toggleState == 3 ? "content activeContent" : "content"}>
         {showResult === true && <Resultados id={localStorage.getItem("id")} />}
       </div>
     </div>

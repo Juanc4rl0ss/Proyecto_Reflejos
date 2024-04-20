@@ -34,8 +34,7 @@ function App() {
       <Route path="/login" element={ <Login /> } />
       <Route path="/home" element={ <Home /> } />
       <Route path="/deportistas/:id?" element={ <Deportistas /> } />
-   
-      <Route path="*" element={<PaginaNoEncontrada children={"Oups!, lo sentimos pero la página que busca no se encuentra"} />} />
+      <Route path="*" element={<PaginaNoEncontrada>Oups!, lo sentimos pero la página que busca no se encuentra</PaginaNoEncontrada>} />
     </Routes>
   );
 }
