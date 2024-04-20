@@ -8,7 +8,7 @@ import Mensaje from "./Mensaje/Mensaje";
 const Deportista = (props) => {
   const { nombre, apellido1, apellido2, club, deporte, fechanacimiento, historiasClinicas, resultados } = props;
   const [toggleState, setToggleState] = useState(1);
-  const [showResult,setShowResult]=useState(false);
+  const [showResult, setShowResult] = useState(false);
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -16,33 +16,27 @@ const Deportista = (props) => {
     // Hacer scroll hacia arriba
     window.scrollTo(0, 0);
   };
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     //cuando se monta valor null para error carga useFirebaseGetRespuesta id
 
- 
-
     //cuando se desmonta limpia localStorage si existe para cambio  de página
-    return ()=>{
-      if(typeof localStorage!=="undefined"){
+    return () => {
+      if (typeof localStorage !== "undefined") {
         localStorage.clear();
       }
-     
+
       setShowResult(false);
-    }
- 
-  },[])
+    };
+  }, []);
 
   //añade id a localStorage con el value que trae el evento que es el id.resultados
-  const handleDetalle=(e)=>{
+  const handleDetalle = (e) => {
     toggleTab(3);
-    
- 
+
     localStorage.setItem("id", e.target.value);
     setShowResult(true);
-    
-
-  }
+  };
 
   return (
     <div>
@@ -70,11 +64,8 @@ const Deportista = (props) => {
             Resultados
           </div>
           {toggleState === 3 && (
-             <div className={`px-3 ${toggleState === 3 ? "activeTabs" : ""} mb-3 me-3 boton`}  >
-            Detalles
-          </div>
+            <div className={`px-3 ${toggleState === 3 ? "activeTabs" : ""} mb-3 me-3 boton`}>Detalles</div>
           )}
-         
         </div>
       </div>
       <div className={toggleState === 1 ? "content activeContent" : "content"}>
@@ -110,27 +101,23 @@ const Deportista = (props) => {
                   <tbody>
                     {historiasClinicas && historiasClinicas.length > 0 ? (
                       historiasClinicas.map((historia, index) => (
-                        <>
-                        <tr key={index}>
-                          <th scope="row">{index + 1}</th>
-                          <td>{historia.descripcion}</td>
-                          <td>
-                            {historia.fechainicio
-                              ? new Date(historia.fechainicio.seconds * 1000).toLocaleDateString()
-                              : "Fecha no disponible"}
-                          </td>
-                          <td>
-                            {historia.fechafin
-                              ? new Date(historia.fechafin.seconds * 1000).toLocaleDateString()
-                              : "Fecha no disponible"}
-                          </td>
-                          
-                        </tr>  
-                         
-                        </>
+                          <tr key={index}>
+                            <th scope="row">{index + 1}</th>
+                            <td>{historia.descripcion}</td>
+                            <td>
+                              {historia.fechainicio
+                                ? new Date(historia.fechainicio.seconds * 1000).toLocaleDateString()
+                                : "Fecha no disponible"}
+                            </td>
+                            <td>
+                              {historia.fechafin
+                                ? new Date(historia.fechafin.seconds * 1000).toLocaleDateString()
+                                : "Fecha no disponible"}
+                            </td>
+                          </tr>
                       ))
                     ) : (
-                      <tr key={index}>
+                      <tr>
                         <td colSpan="4">No hay historias clínicas disponibles.</td>
                       </tr>
                     )}
@@ -172,18 +159,20 @@ const Deportista = (props) => {
                             <td>{resultado.dispositivosApagados}</td>
                             <td>{resultado.numeroFallos}</td>
                             <td>
-                           
-                          <button className="btn btn-outline-primary btn-sm link" value={resultado.idResultado} onClick={(e)=>{handleDetalle(e)}}>
-                            
-                            Detalles
-
-                          </button>
-                           
+                              <button
+                                className="btn btn-outline-primary btn-sm link"
+                                value={resultado.idResultado}
+                                onClick={(e) => {
+                                  handleDetalle(e);
+                                }}
+                              >
+                                Detalles
+                              </button>
                             </td>
                           </tr>
                         ))
                       ) : (
-                        <tr key={index}>
+                        <tr>
                           <td colSpan="3">
                             <Mensaje tipo="warning">No hay historias clínicas disponibles.</Mensaje>
                           </td>
@@ -198,16 +187,9 @@ const Deportista = (props) => {
         </div>
       </div>
       <div className={toggleState === 3 ? "content activeContent" : "content"}>
-{showResult ===true &&(
-  <Resultados id={localStorage.getItem("id")}/>
-)}
-   
-
-            
-
+        {showResult === true && <Resultados id={localStorage.getItem("id")} />}
       </div>
     </div>
-    
   );
 };
 export default Deportista;
