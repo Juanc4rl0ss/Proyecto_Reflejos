@@ -59,7 +59,7 @@ const Resultados = ({id}) => {
           </section>
         </main>
       )}
-      ;
+      
     </>
   );
 };

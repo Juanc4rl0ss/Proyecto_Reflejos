@@ -1,28 +1,22 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { where } from "firebase/firestore";
 import Header from "../../componentes/Header/Header";
 import TablaDeportistas from "../../componentes/TablaDeportistas/TablaDeportistas";
 import "./Home.css";
-import useFirebaseDeportes from '../../hooks/useFirebaseDeportes';
+import useFirebaseDeportes from "../../hooks/useFirebaseDeportes";
 import { toCapital } from "../../hooks/upperCaptial";
 
 const Home = () => {
-
   const [filtroNombre, setFiltroNombre] = useState("");
   const [filtroApellido1, setFiltroApellido1] = useState("");
   const [filtroApellido2, setFiltroApellido2] = useState("");
   const [filtroDeporte, setFiltroDeporte] = useState("");
 
   const { deportesUnicos } = useFirebaseDeportes();
-  
- 
-  
 
-  
   // Los filtros que se aplicaran al pulsar el boton buscar
   const [filtros, setFiltros] = useState(null);
 
-  
   // Metodo que maneja el evento de buscar
   const handleClickBuscar = () => {
     let nuevosFiltros = [];
@@ -43,9 +37,8 @@ const Home = () => {
 
   // Metodo que maneja el cambio de nombre en el filtro
   const handleChangeNombre = (e) => {
-    let nombre = toCapital( e.target.value);
-  
-   
+    let nombre = toCapital(e.target.value);
+
     setFiltroNombre(nombre);
   };
 
@@ -82,7 +75,7 @@ const Home = () => {
                 type="text"
                 className="form-control"
                 id="nombre"
-                onChange={(e) => handleChangeNombre(e)}
+                onBlur={(e) => handleChangeNombre(e)}
               ></input>
             </div>
           </div>
@@ -124,14 +117,11 @@ const Home = () => {
                 onChange={(e) => handleChangeDeporte(e)}
               >
                 <option value="">Cualquier deporte</option>
-                {deportesUnicos.map((deporte)=>(
-                  <option value={deporte} key={deporte}>{deporte}</option>
+                {deportesUnicos.map((deporte) => (
+                  <option value={deporte} key={deporte}>
+                    {deporte}
+                  </option>
                 ))}
-               {/* <option value="Taekwondo">Taekwondo</option>
-                <option value="Ciclismo">Ciclismo</option>
-                <option value="Futbol">Futbol</option>
-                <option value="Baloncesto">Baloncesto</option>
-              <option value="Tenis">Tenis</option>*/}
               </select>
             </div>
           </div>
@@ -150,4 +140,3 @@ const Home = () => {
 };
 
 export default Home;
-

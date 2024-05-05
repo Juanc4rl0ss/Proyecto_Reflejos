@@ -89,6 +89,17 @@ const Login = () => {
         console.log(
           `Se ha iniciado sesión correctamente, usuario: ${userCredential.user.email}`
         );
+        //libreria toastify
+        Toastify({
+
+          text: "Iniciado conexión correctamente",
+           style: {
+            background: "linear-gradient(to right, #0074D9, #7FDBFF)",
+          },
+          duration: 3000
+         
+          
+          }).showToast();
         // Redirigimos a la página Home si hemos conseguido iniciar sesión.
         navigate("/home");
       })
