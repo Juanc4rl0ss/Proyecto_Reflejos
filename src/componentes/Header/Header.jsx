@@ -1,6 +1,7 @@
 import { app } from "../../main";
 import { useNavigate, Link} from "react-router-dom";
 import { signOut, getAuth } from "firebase/auth";
+
 import "./Header.css";
 
 const Header = () => {
@@ -15,6 +16,14 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         console.log("Se ha cerrado sesión correctamente");
+        Toastify({
+          text: "Sesión cerrada correctamente",
+          duration: 3000,
+          style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          },
+          onClick: function(){} // Función opcional si se necesita algún manejo adicional
+        }).showToast();
         // Redirigimos a la página Login si se ha cerrado sesion correctamente
         navigate("/login");
       })

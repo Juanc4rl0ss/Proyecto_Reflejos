@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { where } from "firebase/firestore";
 import Header from "../../componentes/Header/Header";
 import TablaDeportistas from "../../componentes/TablaDeportistas/TablaDeportistas";

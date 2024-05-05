@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "./Deportista.css";
 import Resultados from "../Resultados/Resultados";
 import Mensaje from "./Mensaje/Mensaje";
+import HistoriasClinicas from "../HistoriasClinicas/HistoriasClinicas";
 //import Resultados from "../../pages/Resultados/Resultados";
 
 const Deportista = (props) => {
@@ -114,29 +115,8 @@ const Deportista = (props) => {
                       <th scope="col">Fin</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {historiasClinicas && historiasClinicas.length > 0 ? (
-                      historiasClinicas.map((historia, index) => (
-                          <tr key={index}>
-                            <th scope="row">{index + 1}</th>
-                            <td>{historia.descripcion}</td>
-                            <td>
-                              {historia.fechainicio
-                                ? new Date(historia.fechainicio.seconds * 1000).toLocaleDateString()
-                                : "Fecha no disponible"}
-                            </td>
-                            <td>
-                              {historia.fechafin
-                                ? new Date(historia.fechafin.seconds * 1000).toLocaleDateString()
-                                : "Fecha no disponible"}
-                            </td>
-                          </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td colSpan="4">No hay historias clínicas disponibles.</td>
-                      </tr>
-                    )}
+                  <tbody>                    
+                    <HistoriasClinicas historiasClinicas={historiasClinicas} />
                   </tbody>
                 </table>
               </div>
