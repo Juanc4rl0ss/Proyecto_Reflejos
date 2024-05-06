@@ -4,7 +4,8 @@ import Header from "../../componentes/Header/Header";
 import TablaDeportistas from "../../componentes/TablaDeportistas/TablaDeportistas";
 import "./Home.css";
 import useFirebaseDeportes from "../../hooks/useFirebaseDeportes";
-import { toCapital } from "../../hooks/upperCaptial";
+import { toCapital } from "../../helpers/upperCapital";
+
 
 const Home = () => {
   const [filtroNombre, setFiltroNombre] = useState("");
@@ -37,20 +38,19 @@ const Home = () => {
 
   // Metodo que maneja el cambio de nombre en el filtro
   const handleChangeNombre = (e) => {
-    let nombre = toCapital(e.target.value);
-
+    let nombre =toCapital(e.target.value);
     setFiltroNombre(nombre);
   };
 
   // Metodo que maneja el cambio del primer apellido en el filtro
   const handleChangeApellido1 = (e) => {
-    let deporte = toCapital(e.target.value);
+    let deporte =toCapital(e.target.value);
     setFiltroApellido1(deporte);
   };
 
   // Metodo que maneja el cambio del segundo apellido en el filtro
   const handleChangeApellido2 = (e) => {
-    let deporte = toCapital(e.target.value);
+    let deporte =toCapital(e.target.value);
     setFiltroApellido2(deporte);
   };
 

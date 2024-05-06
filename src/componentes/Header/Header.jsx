@@ -26,6 +26,7 @@ const Header = () => {
         }).showToast();
         // Redirigimos a la página Login si se ha cerrado sesion correctamente
         navigate("/login");
+        
       })
       .catch((error) => {
         console.error("Error al cerrar sesión", error);

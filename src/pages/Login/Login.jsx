@@ -93,6 +93,7 @@ const Login = () => {
         Toastify({
 
           text: "Iniciado conexión correctamente",
+         
            style: {
             background: "linear-gradient(to right, #0074D9, #7FDBFF)",
           },

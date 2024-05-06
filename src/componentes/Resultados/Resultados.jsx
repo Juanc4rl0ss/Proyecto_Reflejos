@@ -23,6 +23,7 @@ const Resultados = ({id}) => {
                     <dd className="col-sm-8">{datosResultado.fecha.toDate().toLocaleDateString()}</dd>
                     <dt className="col-sm-4">Categoria:</dt>
                     <dd className="col-sm-8">{datosResultado.tipoejercicio}</dd>
+                    
                     <dt className="col-sm-4">Distancia al dispositivo:</dt>
                     <dd className="col-sm-8">{datosResultado.distanciaaldispositivo}</dd>
                     <dt className="col-sm-4">Tiempo medio reaccion:</dt>
